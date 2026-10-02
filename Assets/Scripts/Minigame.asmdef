@@ -1,0 +1,8 @@
+{
+    "name": "Minigame",
+    "references": [
+        "Unity.InputSystem",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI"
+    ]
+}
