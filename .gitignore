@@ -37,6 +37,9 @@
 # Visual Studio cache directory
 .vs/
 
+# Unity Version Control (Plastic SCM) local workspace metadata
+/.plastic/
+
 # Gradle cache directory
 .gradle/
 
