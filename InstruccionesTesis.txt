@@ -1,0 +1,177 @@
+Te propongo hacerlo por bloques, empezando por la evidencia técnica más fácil y dejando las pruebas con personas para el final. No necesitas conseguir todo de una sola vez: puedes enviarme cada bloque apenas lo completes.
+1. Preparar la carpeta de evidencias
+Dentro de TestingProject, crea esta estructura:
+Evidencias_Finales/
+├── 01_Unity_TestRunner/
+├── 02_GitHub_Actions/
+├── 03_Pruebas_PlayMode/
+├── 04_Usuarios/
+├── 05_Regresion_Bugs/
+├── 06_Videos/
+└── 07_Textos_Tesis/
+No uses contraseñas institucionales reales. Mantén las credenciales simuladas del prototipo.
+2. Obtener la captura real de Unity Test Runner
+1. Abre TestingProject en Unity.
+2. Espera a que termine de compilar.
+3. Ve a Window > General > Test Runner.
+4. Selecciona la pestaña EditMode.
+5. Pulsa Run All.
+6. Espera el resultado final.
+7. Toma una captura completa donde se vean:
+   - Pestaña EditMode.
+   - Resultado 16/16.
+   - Lista de pruebas en verde.
+   - Ventana completa de Unity.
+8. Guarda la imagen como:
+01_Unity_TestRunner/EditMode_16_de_16.png
+9. Si aparece cualquier error, no lo ocultes. Guarda también:
+01_Unity_TestRunner/Error_EditMode.png
+01_Unity_TestRunner/Console_Error.png
+No busques todavía pruebas PlayMode: actualmente el proyecto no tiene una suite PlayMode completa.
+3. Ejecutar GitHub Actions
+Primero asegúrate de subir los cambios actuales a GitHub.
+1. Abre el repositorio:
+   TestingProject
+2. Entra a Actions.
+3. Busca el workflow relacionado con Unity CI.
+4. Ejecuta Run workflow, si aparece disponible.
+5. Espera a que termine.
+6. Guarda:
+   - Captura de la lista de jobs.
+   - Captura del job EditMode.
+   - Captura de cualquier job fallido.
+   - Enlace exacto de la ejecución.
+Nombres sugeridos:
+02_GitHub_Actions/01_Ejecucion_Completa.png
+02_GitHub_Actions/02_Job_EditMode.png
+02_GitHub_Actions/03_Error_PlayMode_o_Licencia.png
+02_GitHub_Actions/enlace.txt
+Si falla por licencia, secretos, activación o PlayMode, no cambies cosas al azar: pásame la captura y el enlace para revisar el fallo.
+4. Ejecutar pruebas manuales del prototipo
+Realiza una prueba completa y registra cada caso:
+ID	Acción	Resultado esperado
+PM-01	Ingresar credenciales válidas	Carga Gameplay 1
+PM-02	Ingresar credenciales inválidas	Permanece en Login
+PM-03	Acercarse y alejarse de una consola	El prompt aparece y desaparece
+PM-04	Escanear una puerta	El análisis dura aproximadamente 5 segundos
+PM-05	Elegir puerta incorrecta	La integridad disminuye de 100 a 75
+PM-06	Dejar agotar el tiempo	La integridad disminuye 25 puntos
+PM-07	Elegir puerta correcta	Avanza al siguiente nivel
+PM-08	Completar cuatro niveles	Se concede el acceso
+PM-09	Provocar tres fallos completos	Regresa al Login
+PM-10	Interactuar mientras se escanea	Debe comprobarse si BUG-003 continúa
+
+
+Para cada caso anota:
+ID:
+Fecha:
+Resultado obtenido:
+Aprobado / Fallido:
+Observaciones:
+Captura:
+Guárdalo en un Word, Excel o texto dentro de 03_Pruebas_PlayMode.
+5. Verificar los bugs
+Prioriza estos tres:
+BUG-003: interacción durante el escaneo
+1. Inicia un escaneo.
+2. Durante los 5 segundos, presiona repetidamente la tecla de interacción.
+3. Comprueba si permite cambiar de puerta, avanzar o ejecutar otra acción.
+4. Graba el comportamiento.
+BUG-004: exceso de puertas
+Este puede necesitar una modificación temporal de configuración. No la hagas todavía sin avisarme; puedo ayudarte a preparar el caso sin dañar la escena.
+BUG-006: reporte incompleto
+Necesitamos descubrir exactamente qué comportamiento representa. Si recuerdas qué fallaba, escríbeme:
+- Qué estabas haciendo.
+- Qué esperabas.
+- Qué ocurrió.
+- En qué escena.
+- Si apareció algún error en Console.
+Para BUG-001, BUG-002 y BUG-005 basta inicialmente con una captura o video demostrando que ya no ocurre el problema.
+Guarda todo en 05_Regresion_Bugs.
+6. Realizar las pruebas con usuarios
+Necesitamos entre 3 y 5 personas. Pueden ser compañeros o estudiantes; no tienen que ser expertos.
+Identifícalos únicamente como:
+U01
+U02
+U03
+U04
+U05
+No registres nombres, correos ni contraseñas.
+Antes de comenzar, diles:
+Se está evaluando el prototipo y no tus capacidades. Puedes detener la prueba cuando quieras. No utilices credenciales reales.
+
+Cada participante debe realizar dos tareas:
+1. Iniciar sesión y llegar al primer reto sin ayuda.
+2. Completar los cuatro niveles y acceder al laboratorio.
+Registra esta tabla:
+Usuario	Equipo utilizado	Tiempo Login	Tiempo total	Errores	Ayudas	Completó
+U01						Sí/No
+U02						Sí/No
+U03						Sí/No
+
+
+Usa el cronómetro del celular. No le expliques la solución al usuario salvo que pida ayuda; cada intervención cuenta como una ayuda.
+7. Aplicar pretest y postest
+Haz las mismas cinco preguntas antes y después de jugar. Una respuesta correcta vale un punto.
+1. ¿Es seguro reutilizar la misma contraseña en diferentes servicios?
+   Respuesta correcta: No.
+2. ¿Un mensaje urgente que solicita credenciales mediante un enlace puede ser phishing?
+   Respuesta correcta: Sí.
+3. ¿Qué se debe revisar antes de ingresar credenciales en un enlace?
+   Respuesta esperada: dominio, HTTPS y procedencia.
+4. ¿La autenticación de dos factores mejora la seguridad de una cuenta?
+   Respuesta correcta: Sí.
+5. Si un acceso muestra señales sospechosas, ¿debe continuarse inmediatamente?
+   Respuesta correcta: No; primero debe verificarse.
+Registra:
+Usuario	Pretest /5	Postest /5
+U01		
+U02		
+U03		
+
+
+No calcules nada más; con esos resultados puedo obtener mejora porcentual, promedio y comparación.
+8. Aplicar la encuesta de UX
+Después de jugar, cada usuario responde del 1 al 5:
+1. Comprendí qué debía hacer.
+2. La retroalimentación fue clara.
+3. El tiempo disponible fue suficiente.
+4. El juego me ayudó a reconocer decisiones seguras.
+5. Usaría nuevamente este método de acceso.
+También pregúntale:
+- ¿Qué parte fue más confusa?
+- ¿Qué cambiarías?
+- ¿Qué parte te pareció más útil?
+9. Grabar los videos
+Graba como mínimo:
+1. Login válido e inválido.
+2. Escaneo de una puerta.
+3. Una selección incorrecta.
+4. Una selección correcta.
+5. Recorrido por los cuatro niveles.
+6. Resultado de Unity Test Runner.
+7. Prueba con al menos un usuario, sin mostrar su rostro ni datos personales.
+Puedes utilizar Xbox Game Bar con Windows + Alt + R.
+Guarda los archivos como:
+06_Videos/01_Login.mp4
+06_Videos/02_Minijuego_Completo.mp4
+06_Videos/03_TestRunner.mp4
+06_Videos/04_Prueba_Usuario_U01.mp4
+10. Completar los textos personales
+En 07_Textos_Tesis, crea un archivo con:
+DEDICATORIA:
+[Tu texto]
+
+AGRADECIMIENTOS:
+[Tu texto]
+Si prefieres, puedes darme solamente las personas o instituciones que deseas mencionar y yo redacto ambos textos.
+11. Entregarme la información
+Cuando tengas evidencia, no esperes a terminarlo todo. Envíamela en este orden:
+1. Captura del Test Runner.
+2. Resultado de GitHub Actions.
+3. Pruebas manuales y bugs.
+4. Tabla de usuarios.
+5. Pretest, postest y encuesta.
+6. Videos.
+7. Dedicatoria y agradecimientos.
+Con cada bloque actualizaré los laboratorios, calcularé las métricas, redactaré las conclusiones y reemplazaré los campos pendientes sin inventar información.

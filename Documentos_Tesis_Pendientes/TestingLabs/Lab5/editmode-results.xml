@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Passed" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.0699126">
+  <test-suite type="TestSuite" id="1000" name="MinigameTry1" fullname="MinigameTry1" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.069913" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1024" name="EditModeTests.dll" fullname="/github/workspace/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.060278" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="127" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1003" name="BooleanAssertionTest" fullname="BooleanAssertionTest" classname="BooleanAssertionTest" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.031636" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1004" name="HasReachedMaxStrikes_IsFalse_BelowTheLimit" fullname="BooleanAssertionTest.HasReachedMaxStrikes_IsFalse_BelowTheLimit" methodname="HasReachedMaxStrikes_IsFalse_BelowTheLimit" classname="BooleanAssertionTest" runstate="Runnable" seed="775192472" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.013735" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1005" name="HasReachedMaxStrikes_IsTrue_AtTheLimit" fullname="BooleanAssertionTest.HasReachedMaxStrikes_IsTrue_AtTheLimit" methodname="HasReachedMaxStrikes_IsTrue_AtTheLimit" classname="BooleanAssertionTest" runstate="Runnable" seed="494120510" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.000625" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1008" name="CoreGameplayTests" fullname="CoreGameplayTests" classname="CoreGameplayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.008375" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1010" name="AddStrike_DoesNotExceedMaxStrikes" fullname="CoreGameplayTests.AddStrike_DoesNotExceedMaxStrikes" methodname="AddStrike_DoesNotExceedMaxStrikes" classname="CoreGameplayTests" runstate="Runnable" seed="286026374" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.004658" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1009" name="AddStrike_IncrementsFailureCounterFromTwoToThree" fullname="CoreGameplayTests.AddStrike_IncrementsFailureCounterFromTwoToThree" methodname="AddStrike_IncrementsFailureCounterFromTwoToThree" classname="CoreGameplayTests" runstate="Runnable" seed="2006876103" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.000384" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="TakeDamage_ClampsIntegrityAtZero" fullname="CoreGameplayTests.TakeDamage_ClampsIntegrityAtZero" methodname="TakeDamage_ClampsIntegrityAtZero" classname="CoreGameplayTests" runstate="Runnable" seed="1732531282" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.001302" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1001" name="EqualityAssertionTest" fullname="EqualityAssertionTest" classname="EqualityAssertionTest" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.002062" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1002" name="TakeDamage_IntegrityEqualsExpected_AfterOneMistake" fullname="EqualityAssertionTest.TakeDamage_IntegrityEqualsExpected_AfterOneMistake" methodname="TakeDamage_IntegrityEqualsExpected_AfterOneMistake" classname="EqualityAssertionTest" runstate="Runnable" seed="474526799" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.000753" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1006" name="ExceptionAssertionTest" fullname="ExceptionAssertionTest" classname="ExceptionAssertionTest" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.005001" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1007" name="SetMaxStrikes_ThrowsArgumentOutOfRange_ForInvalidCapacity" fullname="ExceptionAssertionTest.SetMaxStrikes_ThrowsArgumentOutOfRange_ForInvalidCapacity" methodname="SetMaxStrikes_ThrowsArgumentOutOfRange_ForInvalidCapacity" classname="ExceptionAssertionTest" runstate="Runnable" seed="1745015408" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.003909" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1012" name="FirstUnitTest" fullname="FirstUnitTest" classname="FirstUnitTest" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.001627" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1013" name="IsSafe_ReturnsTrue_ForACorrectDoor" fullname="FirstUnitTest.IsSafe_ReturnsTrue_ForACorrectDoor" methodname="IsSafe_ReturnsTrue_ForACorrectDoor" classname="FirstUnitTest" runstate="Runnable" seed="345825078" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.000465" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1014" name="LevelProgressionTest" fullname="LevelProgressionTest" classname="LevelProgressionTest" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.005803" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1015" name="NextLevel_AdvancesFromLevel2ToLevel3" fullname="LevelProgressionTest.NextLevel_AdvancesFromLevel2ToLevel3" methodname="NextLevel_AdvancesFromLevel2ToLevel3" classname="LevelProgressionTest" runstate="Runnable" seed="782473021" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.001334" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1016" name="NextLevel_CompletesVerification_WhenLastLevelIsCleared" fullname="LevelProgressionTest.NextLevel_CompletesVerification_WhenLastLevelIsCleared" methodname="NextLevel_CompletesVerification_WhenLastLevelIsCleared" classname="LevelProgressionTest" runstate="Runnable" seed="1376377771" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.000586" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1018" name="NextLevel_WithEmptyLevels_CompletesVerification" fullname="LevelProgressionTest.NextLevel_WithEmptyLevels_CompletesVerification" methodname="NextLevel_WithEmptyLevels_CompletesVerification" classname="LevelProgressionTest" runstate="Runnable" seed="2018427322" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.001177" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1017" name="StartVerification_WithNullLevels_DoesNotStart" fullname="LevelProgressionTest.StartVerification_WithNullLevels_DoesNotStart" methodname="StartVerification_WithNullLevels_DoesNotStart" classname="LevelProgressionTest" runstate="Runnable" seed="986765546" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.000784" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1019" name="LevelSolvabilityTest" fullname="LevelSolvabilityTest" classname="LevelSolvabilityTest" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.002841" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1022" name="IsLevelSolvable_ReturnsFalse_WhenConfigIsNull" fullname="LevelSolvabilityTest.IsLevelSolvable_ReturnsFalse_WhenConfigIsNull" methodname="IsLevelSolvable_ReturnsFalse_WhenConfigIsNull" classname="LevelSolvabilityTest" runstate="Runnable" seed="1386806187" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.000315" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1021" name="IsLevelSolvable_ReturnsFalse_WhenCorrectDoorTypeIsMissing" fullname="LevelSolvabilityTest.IsLevelSolvable_ReturnsFalse_WhenCorrectDoorTypeIsMissing" methodname="IsLevelSolvable_ReturnsFalse_WhenCorrectDoorTypeIsMissing" classname="LevelSolvabilityTest" runstate="Runnable" seed="1085068317" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.000256" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1023" name="IsLevelSolvable_ReturnsFalse_WhenDoorTypesIsNull" fullname="LevelSolvabilityTest.IsLevelSolvable_ReturnsFalse_WhenDoorTypesIsNull" methodname="IsLevelSolvable_ReturnsFalse_WhenDoorTypesIsNull" classname="LevelSolvabilityTest" runstate="Runnable" seed="2108101476" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.000188" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1020" name="IsLevelSolvable_ReturnsTrue_WhenCorrectDoorTypeIsPresent" fullname="LevelSolvabilityTest.IsLevelSolvable_ReturnsTrue_WhenCorrectDoorTypeIsPresent" methodname="IsLevelSolvable_ReturnsTrue_WhenCorrectDoorTypeIsPresent" classname="LevelSolvabilityTest" runstate="Runnable" seed="1351207910" result="Passed" start-time="2026-10-02 22:40:24Z" end-time="2026-10-02 22:40:24Z" duration="0.000202" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: /root/.config/unity3d/DefaultCompany/MinigameTry1/TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
