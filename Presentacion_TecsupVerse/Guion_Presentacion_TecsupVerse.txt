@@ -1,0 +1,35 @@
+GUION DE PRESENTACIÓN — TECSUPVERSE
+Duración estimada: 8 a 10 minutos
+
+DIAPOSITIVA 1
+Buenos días. Presentaré TecsupVerse, un prototipo desarrollado en Unity que transforma el acceso a laboratorios virtuales en una experiencia gamificada. La propuesta combina autenticación, interacción 3D y decisiones de ciberseguridad para que el usuario no solo ingrese al entorno, sino que también refuerce prácticas digitales seguras.
+
+DIAPOSITIVA 2
+El problema parte de tres puntos. Primero, amenazas como el phishing aprovechan la falta de criterio del usuario. Segundo, el manejo inadecuado de credenciales aumenta el riesgo. Tercero, el inicio de sesión tradicional cumple una función técnica, pero no educa. Por eso el proyecto busca integrar el aprendizaje dentro del propio proceso de acceso.
+
+DIAPOSITIVA 3
+La solución se organiza en cuatro momentos. El usuario inicia sesión, entra a un entorno virtual 3D, supera validaciones mediante minijuegos y finalmente obtiene acceso al laboratorio. La diferencia central es que el acceso no depende únicamente de escribir una contraseña, sino también de demostrar decisiones seguras dentro de la experiencia.
+
+DIAPOSITIVA 4
+El objetivo general fue desarrollar un mecanismo de autenticación gamificada en un entorno virtual. Para lograrlo se plantearon cuatro líneas de trabajo: analizar el problema, diseñar el flujo de acceso, implementar el prototipo y evaluar su funcionamiento. La evaluación técnica ya cuenta con pruebas automatizadas. La evaluación con usuarios y las métricas pretest y postest quedan como trabajo pendiente.
+
+DIAPOSITIVA 5
+Desde la perspectiva del usuario, el recorrido es directo. Primero valida sus credenciales. Después explora el entorno, localiza la consola, escanea la puerta y toma una decisión. Si completa correctamente los niveles, se habilita el acceso. La retroalimentación ocurre durante la acción, lo que permite aprender a partir de cada elección.
+
+DIAPOSITIVA 6
+El prototipo fue implementado en Unity con una arquitectura modular. La primera parte administra el inicio de sesión y el cambio de escena. La segunda controla el movimiento y la interacción del jugador. La tercera contiene las reglas del minijuego, como escaneo, tiempo, integridad, strikes y desbloqueo de puertas. Esta separación facilita probar cada componente de manera independiente.
+
+DIAPOSITIVA 7
+Las reglas actuales se mantienen deliberadamente simples. El usuario debe completar cuatro niveles. Cada nivel tiene treinta segundos y el escaneo tarda cinco segundos. Un error o el agotamiento del tiempo resta veinticinco puntos de integridad. Además, el sistema admite hasta tres strikes. Al completar todos los niveles se desbloquea el laboratorio virtual.
+
+DIAPOSITIVA 8
+Para comprobar la lógica se utilizó Unity Test Framework. La evidencia actual muestra dieciséis pruebas EditMode aprobadas y ningún fallo. Las pruebas cubren funciones centrales como autenticación, temporizador, integridad, strikes y avance del flujo. Esto respalda la estabilidad del prototipo a nivel de lógica, aunque todavía faltan pruebas de experiencia con usuarios reales.
+
+DIAPOSITIVA 9
+Además de las pruebas locales, el proyecto usa GitHub Actions para ejecutar el flujo de integración continua. La ejecución mostrada corresponde a Unity CI número diez y terminó correctamente. El workflow incluye trabajos EditMode y PlayMode, y produjo dos artefactos. GitHub aporta control de versiones y evidencia técnica, mientras Trello apoya la trazabilidad de tareas y pendientes.
+
+DIAPOSITIVA 10
+El estado actual debe interpretarse como un prototipo funcional. Ya están implementados el login, el entorno 3D, la validación gamificada y las pruebas automatizadas. También se cumple el objetivo de implementación con datos simulados. Sin embargo, todavía no existe integración con identidad institucional, faltan estudios con usuarios y deben evaluarse concurrencia, red y rendimiento en equipos de menores recursos.
+
+DIAPOSITIVA 11
+Como siguientes pasos se propone ampliar la representación del campus, conectar el sistema con servicios institucionales, optimizarlo para hardware de menor capacidad y medir su impacto con usuarios reales. En conclusión, TecsupVerse demuestra que un proceso cotidiano como la autenticación puede convertirse en una oportunidad breve de aprendizaje y concientización sobre ciberseguridad. Gracias.
