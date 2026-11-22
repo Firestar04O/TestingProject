@@ -3,7 +3,7 @@ using UnityEngine;
 public class TimerSystem : MonoBehaviour
 {
     [Header("Timer")]
-    [SerializeField] private float startTime = 30f;
+    [SerializeField] private float startTime = 45f;
     [SerializeField] private float currentTime;
     [SerializeField] private bool timerRunning;
 
@@ -11,8 +11,11 @@ public class TimerSystem : MonoBehaviour
     [SerializeField] private VerificationManager verificationManager;
     [SerializeField] private VerificationUI verificationUI;
 
+    private readonly DisplayedSecondTracker displayedSecondTracker = new DisplayedSecondTracker();
+
     public float CurrentTime => currentTime;
     public bool TimerRunning => timerRunning;
+    public float StartTime => startTime;
 
     private void Update()
     {
@@ -27,6 +30,7 @@ public class TimerSystem : MonoBehaviour
         currentTime = startTime;
         timerRunning = true;
 
+        displayedSecondTracker.Reset();
         UpdateUI();
     }
 
@@ -38,6 +42,7 @@ public class TimerSystem : MonoBehaviour
     public void ResetTimer()
     {
         currentTime = startTime;
+        displayedSecondTracker.Reset();
         UpdateUI();
     }
 
@@ -62,7 +67,10 @@ public class TimerSystem : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (verificationUI != null)
-            verificationUI.UpdateTimer(currentTime);
+        if (verificationUI == null)
+            return;
+
+        if (displayedSecondTracker.TryGetChangedSecond(currentTime, out int displayedSecond))
+            verificationUI.UpdateTimer(displayedSecond);
     }
 }

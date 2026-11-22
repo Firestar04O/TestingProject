@@ -30,6 +30,8 @@ public class SlidingDoorGroup : MonoBehaviour, IInteractable
     private bool isOpen;
     private bool isMoving;
     private Coroutine moveRoutine;
+
+    public bool IsOpen => isOpen;
     private void Awake()
     {
         foreach (DoorPart doorPart in doorParts)

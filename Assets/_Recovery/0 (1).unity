@@ -5486,6 +5486,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   playerCamera: {fileID: 330585545}
+  playerController: {fileID: 0}
 --- !u!1 &613467688
 GameObject:
   m_ObjectHideFlags: 0
@@ -18508,7 +18509,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FeedbackUI
   messageGroup: {fileID: 535623814}
   messageText: {fileID: 203001567}
+  promptGroup: {fileID: 0}
+  promptText: {fileID: 0}
   defaultDuration: 2
+  promptDuration: 1.5
 --- !u!1 &1923696780
 GameObject:
   m_ObjectHideFlags: 0

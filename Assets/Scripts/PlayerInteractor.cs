@@ -13,6 +13,7 @@ public class PlayerInteractor : MonoBehaviour
     private IScannable currentScannable;
 
     private IInteractable lastInteractable;
+    private readonly InteractionTargetCache targetCache = new InteractionTargetCache();
 
     private void Awake()
     {
@@ -78,19 +79,19 @@ public class PlayerInteractor : MonoBehaviour
         if (ScannerSystem.Instance != null && ScannerSystem.Instance.IsScanning)
             return;
 
-        currentInteractable = null;
-        currentScannable = null;
+        Collider detectedCollider = null;
 
-        if (playerCamera == null)
-            return;
-
-        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactableLayers))
+        if (playerCamera != null)
         {
-            currentInteractable = hit.collider.GetComponentInParent<IInteractable>();
-            currentScannable = hit.collider.GetComponentInParent<IScannable>();
+            Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactableLayers))
+                detectedCollider = hit.collider;
         }
+
+        targetCache.Refresh(detectedCollider);
+        currentInteractable = targetCache.Interactable;
+        currentScannable = targetCache.Scannable;
 
         if (currentInteractable == lastInteractable)
             return;

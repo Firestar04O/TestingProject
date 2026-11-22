@@ -25,7 +25,7 @@ public class DoorTheme
         return selectedSprites[randomIndex];
     }
 
-    private Sprite[] GetSpritesByType(DoorType doorType)
+    public Sprite[] GetSpritesByType(DoorType doorType)
     {
         switch (doorType)
         {

@@ -8,6 +8,8 @@ public class DoorSpawner : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private VerificationManager verificationManager;
     private readonly List<GameObject> spawnedDoors = new List<GameObject>();
+    private readonly Dictionary<DoorType, Sprite> lastSpriteByType = new Dictionary<DoorType, Sprite>();
+
     public void SpawnLevel(LevelConfig levelConfig)
     {
         ClearDoors();
@@ -18,12 +20,28 @@ public class DoorSpawner : MonoBehaviour
             return;
         }
 
-        List<DoorType> shuffledTypes = new List<DoorType>(levelConfig.doorTypes);
+        int spawnCount = Mathf.Min(spawnPoints.Length, levelConfig.doorTypes.Length);
+
+        if (spawnPoints.Length < levelConfig.doorTypes.Length)
+        {
+            Debug.LogWarning(
+                $"Hay más tipos de puerta ({levelConfig.doorTypes.Length}) que puntos de aparición " +
+                $"({spawnPoints.Length}). Se seleccionará un subconjunto que garantiza incluir la puerta correcta."
+            );
+        }
+
+        List<DoorType> shuffledTypes = BuildSpawnSelection(
+            levelConfig.doorTypes,
+            levelConfig.correctDoorType,
+            spawnCount
+        );
         Shuffle(shuffledTypes);
 
         int correctIndex = GetCorrectDoorIndex(shuffledTypes, levelConfig.correctDoorType);
 
-        for (int i = 0; i < spawnPoints.Length && i < shuffledTypes.Count; i++)
+        HashSet<Sprite> spritesUsedThisLevel = new HashSet<Sprite>();
+
+        for (int i = 0; i < spawnCount; i++)
         {
             DoorOption door = Instantiate(
                 doorPrefab,
@@ -35,7 +53,16 @@ public class DoorSpawner : MonoBehaviour
             Sprite evidenceSprite = null;
 
             if (levelConfig.theme != null)
-                evidenceSprite = levelConfig.theme.GetRandomSprite(shuffledTypes[i]);
+            {
+                evidenceSprite = GetUniqueSprite(
+                    levelConfig.theme,
+                    shuffledTypes[i],
+                    spritesUsedThisLevel
+                );
+
+                if (evidenceSprite != null)
+                    spritesUsedThisLevel.Add(evidenceSprite);
+            }
 
             door.Initialize(
                 shuffledTypes[i],
@@ -48,6 +75,97 @@ public class DoorSpawner : MonoBehaviour
             spawnedDoors.Add(door.gameObject);
         }
     }
+
+    private Sprite GetUniqueSprite(
+        DoorTheme theme,
+        DoorType doorType,
+        HashSet<Sprite> spritesUsedThisLevel
+    )
+    {
+        Sprite[] pool = theme.GetSpritesByType(doorType);
+
+        if (pool == null || pool.Length == 0)
+            return null;
+
+        lastSpriteByType.TryGetValue(doorType, out Sprite previousSprite);
+
+        List<Sprite> preferredCandidates = new List<Sprite>();
+        List<Sprite> availableCandidates = new List<Sprite>();
+
+        foreach (Sprite sprite in pool)
+        {
+            if (sprite == null || spritesUsedThisLevel.Contains(sprite))
+                continue;
+
+            availableCandidates.Add(sprite);
+
+            if (sprite != previousSprite)
+                preferredCandidates.Add(sprite);
+        }
+
+        List<Sprite> candidates = preferredCandidates.Count > 0
+            ? preferredCandidates
+            : availableCandidates;
+
+        if (candidates.Count == 0)
+        {
+            Debug.LogWarning(
+                $"El tema {theme.themeName} no dispone de suficientes evidencias distintas " +
+                $"para evitar repeticiones en el nivel ({doorType})."
+            );
+            return theme.GetRandomSprite(doorType);
+        }
+
+        Sprite selectedSprite = candidates[Random.Range(0, candidates.Count)];
+        lastSpriteByType[doorType] = selectedSprite;
+        return selectedSprite;
+    }
+    /// <summary>
+    /// Elige exactamente "count" tipos de puerta a partir de todos los tipos configurados en el nivel,
+    /// garantizando que al menos una puerta del tipo correcto quede incluida en el subconjunto.
+    /// Evita que la puerta correcta quede fuera cuando hay más tipos que puntos de aparición.
+    /// </summary>
+    private List<DoorType> BuildSpawnSelection(DoorType[] allTypes, DoorType correctType, int count)
+    {
+        List<DoorType> pool = new List<DoorType>(allTypes);
+
+        if (count >= pool.Count)
+            return pool;
+
+        List<int> correctIndices = new List<int>();
+
+        for (int i = 0; i < pool.Count; i++)
+        {
+            if (pool[i] == correctType)
+                correctIndices.Add(i);
+        }
+
+        List<DoorType> selected = new List<DoorType>();
+
+        if (correctIndices.Count > 0)
+        {
+            int guaranteedIndex = correctIndices[Random.Range(0, correctIndices.Count)];
+            selected.Add(pool[guaranteedIndex]);
+            pool.RemoveAt(guaranteedIndex);
+        }
+        else
+        {
+            Debug.LogError(
+                "El nivel no tiene ninguna puerta del tipo correcto entre sus doorTypes configurados. " +
+                "Revisa correctDoorType en el LevelConfig."
+            );
+        }
+
+        while (selected.Count < count && pool.Count > 0)
+        {
+            int randomIndex = Random.Range(0, pool.Count);
+            selected.Add(pool[randomIndex]);
+            pool.RemoveAt(randomIndex);
+        }
+
+        return selected;
+    }
+
     public static bool IsLevelSolvable(LevelConfig levelConfig)
     {
         if (levelConfig == null || levelConfig.doorTypes == null)

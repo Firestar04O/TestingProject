@@ -18,6 +18,7 @@ public class VerificationManager : MonoBehaviour
     [SerializeField] private StrikeManager strikeManager;
     [SerializeField] private TimerSystem timerSystem;
     [SerializeField] private SceneController sceneController;
+    [SerializeField] private MinigameTutorialUI tutorialUI;
 
     [Header("Player")]
     [SerializeField] private Transform player;
@@ -92,11 +93,8 @@ public class VerificationManager : MonoBehaviour
 
         verificationActive = true;
         verificationCompleted = false;
-        choosingLocked = false;
+        choosingLocked = true;
         currentLevelIndex = 0;
-
-        if (verificationUI != null)
-            verificationUI.UpdateLevel(currentLevelIndex + 1);
 
         if (consoleObject != null)
             consoleObject.SetActive(false);
@@ -112,8 +110,28 @@ public class VerificationManager : MonoBehaviour
 
         ResetPlayerToCheckpoint();
 
-        FeedbackUI.Message("Verificación iniciada.", 2f);
+        if (tutorialUI != null)
+        {
+            FeedbackUI.Message("Revisa las instrucciones antes de comenzar.", 2f);
+            tutorialUI.Show(BeginFirstLevel);
+        }
+        else
+        {
+            BeginFirstLevel();
+        }
+    }
 
+    private void BeginFirstLevel()
+    {
+        if (!verificationActive)
+            return;
+
+        choosingLocked = false;
+
+        if (verificationUI != null)
+            verificationUI.UpdateLevel(currentLevelIndex + 1);
+
+        FeedbackUI.Message("Verificación iniciada. Analiza las tres evidencias.", 2f);
         SpawnCurrentLevel();
 
         if (timerSystem != null)
@@ -211,7 +229,7 @@ public class VerificationManager : MonoBehaviour
         choosingLocked = false;
 
         if (labDoor != null)
-            labDoor.SetUnlocked(true);
+            labDoor.UnlockAndOpen();
 
         if (doorSpawner != null)
             doorSpawner.ClearDoors();
@@ -225,7 +243,7 @@ public class VerificationManager : MonoBehaviour
         if (timerSystem != null)
             timerSystem.StopTimer();
 
-        FeedbackUI.Message("Verificación completada. Laboratorio desbloqueado.", 3f);
+        FeedbackUI.Message("Verificación completada. Acceso al laboratorio habilitado.", 3f);
     }
 
     public void FailVerification()
@@ -246,9 +264,6 @@ public class VerificationManager : MonoBehaviour
         if (tabletController != null)
             tabletController.HideTablet();
 
-        if (consoleObject != null)
-            consoleObject.SetActive(true);
-
         if (timerSystem != null)
             timerSystem.StopTimer();
 
@@ -256,12 +271,19 @@ public class VerificationManager : MonoBehaviour
 
         if (strikeManager != null && strikeManager.HasReachedMaxStrikes())
         {
+            // No reactivamos la consola aquí: si se habilita de inmediato, el jugador puede volver
+            // a interactuar con ella durante los 2s de espera de ReturnToLogin y reiniciar la
+            // verificación antes de que la escena cambie (BUG-003). Se reactiva recién dentro de
+            // ReturnToLogin, justo antes de ir a Login.
             FeedbackUI.Message("Demasiados intentos fallidos. Regresando al login.", 2f);
 
             StartCoroutine(ReturnToLogin());
 
             return;
         }
+
+        if (consoleObject != null)
+            consoleObject.SetActive(true);
 
         FeedbackUI.Message("Verificación fallida. Puedes intentarlo otra vez.", 2f);
     }
@@ -304,6 +326,9 @@ public class VerificationManager : MonoBehaviour
     private IEnumerator ReturnToLogin()
     {
         yield return new WaitForSeconds(2f);
+
+        if (consoleObject != null)
+            consoleObject.SetActive(true);
 
         if (sceneController != null)
             sceneController.GoToScene("Login");

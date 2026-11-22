@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="30" result="Passed" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:06Z" duration="0.0698982">
+  <test-suite type="TestSuite" id="1000" name="MinigameTry1" fullname="MinigameTry1" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:06Z" duration="0.069898" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1042" name="EditModeTests.dll" fullname="C:/Users/RICARDO/.codex/visualizations/2026/10/21/01a15c3e-85ed-7a40-87f0-20bc9cf28632/Lab13_Work/UnityTestCopy/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:06Z" duration="0.062844" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="304" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1003" name="BooleanAssertionTest" fullname="BooleanAssertionTest" classname="BooleanAssertionTest" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.023498" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1004" name="HasReachedMaxStrikes_IsFalse_BelowTheLimit" fullname="BooleanAssertionTest.HasReachedMaxStrikes_IsFalse_BelowTheLimit" methodname="HasReachedMaxStrikes_IsFalse_BelowTheLimit" classname="BooleanAssertionTest" runstate="Runnable" seed="748172474" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.010876" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1005" name="HasReachedMaxStrikes_IsTrue_AtTheLimit" fullname="BooleanAssertionTest.HasReachedMaxStrikes_IsTrue_AtTheLimit" methodname="HasReachedMaxStrikes_IsTrue_AtTheLimit" classname="BooleanAssertionTest" runstate="Runnable" seed="1287585095" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.000411" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1008" name="CoreGameplayTests" fullname="CoreGameplayTests" classname="CoreGameplayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.006179" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1010" name="AddStrike_DoesNotExceedMaxStrikes" fullname="CoreGameplayTests.AddStrike_DoesNotExceedMaxStrikes" methodname="AddStrike_DoesNotExceedMaxStrikes" classname="CoreGameplayTests" runstate="Runnable" seed="288857221" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.003545" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1009" name="AddStrike_IncrementsFailureCounterFromTwoToThree" fullname="CoreGameplayTests.AddStrike_IncrementsFailureCounterFromTwoToThree" methodname="AddStrike_IncrementsFailureCounterFromTwoToThree" classname="CoreGameplayTests" runstate="Runnable" seed="1473131762" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.000380" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="TakeDamage_ClampsIntegrityAtZero" fullname="CoreGameplayTests.TakeDamage_ClampsIntegrityAtZero" methodname="TakeDamage_ClampsIntegrityAtZero" classname="CoreGameplayTests" runstate="Runnable" seed="1895601083" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.000916" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1001" name="EqualityAssertionTest" fullname="EqualityAssertionTest" classname="EqualityAssertionTest" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.001418" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1002" name="TakeDamage_IntegrityEqualsExpected_AfterOneMistake" fullname="EqualityAssertionTest.TakeDamage_IntegrityEqualsExpected_AfterOneMistake" methodname="TakeDamage_IntegrityEqualsExpected_AfterOneMistake" classname="EqualityAssertionTest" runstate="Runnable" seed="1720421518" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.000519" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1006" name="ExceptionAssertionTest" fullname="ExceptionAssertionTest" classname="ExceptionAssertionTest" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.002958" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1007" name="SetMaxStrikes_ThrowsArgumentOutOfRange_ForInvalidCapacity" fullname="ExceptionAssertionTest.SetMaxStrikes_ThrowsArgumentOutOfRange_ForInvalidCapacity" methodname="SetMaxStrikes_ThrowsArgumentOutOfRange_ForInvalidCapacity" classname="ExceptionAssertionTest" runstate="Runnable" seed="1471183587" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.002284" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1012" name="FirstUnitTest" fullname="FirstUnitTest" classname="FirstUnitTest" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.001332" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1013" name="IsSafe_ReturnsTrue_ForACorrectDoor" fullname="FirstUnitTest.IsSafe_ReturnsTrue_ForACorrectDoor" methodname="IsSafe_ReturnsTrue_ForACorrectDoor" classname="FirstUnitTest" runstate="Runnable" seed="1674384712" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.000448" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1014" name="LevelProgressionTest" fullname="LevelProgressionTest" classname="LevelProgressionTest" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.003500" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1015" name="NextLevel_AdvancesFromLevel2ToLevel3" fullname="LevelProgressionTest.NextLevel_AdvancesFromLevel2ToLevel3" methodname="NextLevel_AdvancesFromLevel2ToLevel3" classname="LevelProgressionTest" runstate="Runnable" seed="1901479794" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.000903" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1016" name="NextLevel_CompletesVerification_WhenLastLevelIsCleared" fullname="LevelProgressionTest.NextLevel_CompletesVerification_WhenLastLevelIsCleared" methodname="NextLevel_CompletesVerification_WhenLastLevelIsCleared" classname="LevelProgressionTest" runstate="Runnable" seed="651410826" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.000363" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1018" name="NextLevel_WithEmptyLevels_CompletesVerification" fullname="LevelProgressionTest.NextLevel_WithEmptyLevels_CompletesVerification" methodname="NextLevel_WithEmptyLevels_CompletesVerification" classname="LevelProgressionTest" runstate="Runnable" seed="1537436218" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.000752" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1017" name="StartVerification_WithNullLevels_DoesNotStart" fullname="LevelProgressionTest.StartVerification_WithNullLevels_DoesNotStart" methodname="StartVerification_WithNullLevels_DoesNotStart" classname="LevelProgressionTest" runstate="Runnable" seed="1741594462" result="Passed" start-time="2026-11-20 04:20:05Z" end-time="2026-11-20 04:20:05Z" duration="0.000489" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1019" name="LevelSolvabilityTest" fullname="LevelSolvabilityTest" classname="LevelSolvabilityTest" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.001688" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1022" name="IsLevelSolvable_ReturnsFalse_WhenConfigIsNull" fullname="LevelSolvabilityTest.IsLevelSolvable_ReturnsFalse_WhenConfigIsNull" methodname="IsLevelSolvable_ReturnsFalse_WhenConfigIsNull" classname="LevelSolvabilityTest" runstate="Runnable" seed="880383811" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000161" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1021" name="IsLevelSolvable_ReturnsFalse_WhenCorrectDoorTypeIsMissing" fullname="LevelSolvabilityTest.IsLevelSolvable_ReturnsFalse_WhenCorrectDoorTypeIsMissing" methodname="IsLevelSolvable_ReturnsFalse_WhenCorrectDoorTypeIsMissing" classname="LevelSolvabilityTest" runstate="Runnable" seed="1521666163" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000122" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1023" name="IsLevelSolvable_ReturnsFalse_WhenDoorTypesIsNull" fullname="LevelSolvabilityTest.IsLevelSolvable_ReturnsFalse_WhenDoorTypesIsNull" methodname="IsLevelSolvable_ReturnsFalse_WhenDoorTypesIsNull" classname="LevelSolvabilityTest" runstate="Runnable" seed="953172616" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000095" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1020" name="IsLevelSolvable_ReturnsTrue_WhenCorrectDoorTypeIsPresent" fullname="LevelSolvabilityTest.IsLevelSolvable_ReturnsTrue_WhenCorrectDoorTypeIsPresent" methodname="IsLevelSolvable_ReturnsTrue_WhenCorrectDoorTypeIsPresent" classname="LevelSolvabilityTest" runstate="Runnable" seed="1832617447" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000106" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1024" name="MobileOptimizationTests" fullname="MobileOptimizationTests" classname="MobileOptimizationTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.015007" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="ParameterizedMethod" id="1032" name="AndroidTextureOverride_UsesAstcAndExpectedLimit" fullname="MobileOptimizationTests.AndroidTextureOverride_UsesAstcAndExpectedLimit" classname="MobileOptimizationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.007592" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1028" name="AndroidTextureOverride_UsesAstcAndExpectedLimit(&quot;Assets/ModelsFiles/Textures/Wall multiset_Diffuse.png&quot;,2048)" fullname="MobileOptimizationTests.AndroidTextureOverride_UsesAstcAndExpectedLimit(&quot;Assets/ModelsFiles/Textures/Wall multiset_Diffuse.png&quot;,2048)" methodname="AndroidTextureOverride_UsesAstcAndExpectedLimit" classname="MobileOptimizationTests" runstate="Runnable" seed="801201657" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.005913" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1029" name="AndroidTextureOverride_UsesAstcAndExpectedLimit(&quot;Assets/ModelsFiles/Textures/Laboratory03_Floor_BaseMap.png&quot;,1024)" fullname="MobileOptimizationTests.AndroidTextureOverride_UsesAstcAndExpectedLimit(&quot;Assets/ModelsFiles/Textures/Laboratory03_Floor_BaseMap.png&quot;,1024)" methodname="AndroidTextureOverride_UsesAstcAndExpectedLimit" classname="MobileOptimizationTests" runstate="Runnable" seed="1159948341" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000336" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1030" name="AndroidTextureOverride_UsesAstcAndExpectedLimit(&quot;Assets/ModelsFiles/Textures/Table texture set 1 V2_Diffuse.png&quot;,1024)" fullname="MobileOptimizationTests.AndroidTextureOverride_UsesAstcAndExpectedLimit(&quot;Assets/ModelsFiles/Textures/Table texture set 1 V2_Diffuse.png&quot;,1024)" methodname="AndroidTextureOverride_UsesAstcAndExpectedLimit" classname="MobileOptimizationTests" runstate="Runnable" seed="394739074" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000295" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1031" name="AndroidTextureOverride_UsesAstcAndExpectedLimit(&quot;Assets/ModelsFiles/Textures/Chair Set _Diffuse.png&quot;,1024)" fullname="MobileOptimizationTests.AndroidTextureOverride_UsesAstcAndExpectedLimit(&quot;Assets/ModelsFiles/Textures/Chair Set _Diffuse.png&quot;,1024)" methodname="AndroidTextureOverride_UsesAstcAndExpectedLimit" classname="MobileOptimizationTests" runstate="Runnable" seed="1952089548" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000269" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-case id="1025" name="DisplayedSecondTracker_RefreshesOnlyWhenVisibleSecondChanges" fullname="MobileOptimizationTests.DisplayedSecondTracker_RefreshesOnlyWhenVisibleSecondChanges" methodname="DisplayedSecondTracker_RefreshesOnlyWhenVisibleSecondChanges" classname="MobileOptimizationTests" runstate="Runnable" seed="2111065705" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000304" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1026" name="InteractionTargetCache_ResolvesComponentsOnlyWhenColliderChanges" fullname="MobileOptimizationTests.InteractionTargetCache_ResolvesComponentsOnlyWhenColliderChanges" methodname="InteractionTargetCache_ResolvesComponentsOnlyWhenColliderChanges" classname="MobileOptimizationTests" runstate="Runnable" seed="1381798526" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.002609" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1027" name="MobilePipeline_UsesConservativeRenderingBudget" fullname="MobileOptimizationTests.MobilePipeline_UsesConservativeRenderingBudget" methodname="MobilePipeline_UsesConservativeRenderingBudget" classname="MobileOptimizationTests" runstate="Runnable" seed="405305815" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.003524" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1033" name="PerformanceConfigurationTests" fullname="PerformanceConfigurationTests" classname="PerformanceConfigurationTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.005006" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1035" name="PcPipeline_UsesIndoorShadowBudget" fullname="PerformanceConfigurationTests.PcPipeline_UsesIndoorShadowBudget" methodname="PcPipeline_UsesIndoorShadowBudget" classname="PerformanceConfigurationTests" runstate="Runnable" seed="563905317" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000264" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1034" name="PcPipeline_UsesSrpBatcherWithoutUnusedCameraCopies" fullname="PerformanceConfigurationTests.PcPipeline_UsesSrpBatcherWithoutUnusedCameraCopies" methodname="PcPipeline_UsesSrpBatcherWithoutUnusedCameraCopies" classname="PerformanceConfigurationTests" runstate="Runnable" seed="2042028221" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000185" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-suite type="ParameterizedMethod" id="1041" name="RepeatedEnvironmentMaterial_HasGpuInstancingEnabled" fullname="PerformanceConfigurationTests.RepeatedEnvironmentMaterial_HasGpuInstancingEnabled" classname="PerformanceConfigurationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.003529" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1036" name="RepeatedEnvironmentMaterial_HasGpuInstancingEnabled(&quot;Assets/ModelsFiles/Materials/Wall Set 1 T1.mat&quot;)" fullname="PerformanceConfigurationTests.RepeatedEnvironmentMaterial_HasGpuInstancingEnabled(&quot;Assets/ModelsFiles/Materials/Wall Set 1 T1.mat&quot;)" methodname="RepeatedEnvironmentMaterial_HasGpuInstancingEnabled" classname="PerformanceConfigurationTests" runstate="Runnable" seed="1514208971" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000976" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1037" name="RepeatedEnvironmentMaterial_HasGpuInstancingEnabled(&quot;Assets/ModelsFiles/Materials/Laboratory03_Floor_BaseMap.mat&quot;)" fullname="PerformanceConfigurationTests.RepeatedEnvironmentMaterial_HasGpuInstancingEnabled(&quot;Assets/ModelsFiles/Materials/Laboratory03_Floor_BaseMap.mat&quot;)" methodname="RepeatedEnvironmentMaterial_HasGpuInstancingEnabled" classname="PerformanceConfigurationTests" runstate="Runnable" seed="839756591" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000417" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1038" name="RepeatedEnvironmentMaterial_HasGpuInstancingEnabled(&quot;Assets/ModelsFiles/Materials/Table Texture Set 1 V2.mat&quot;)" fullname="PerformanceConfigurationTests.RepeatedEnvironmentMaterial_HasGpuInstancingEnabled(&quot;Assets/ModelsFiles/Materials/Table Texture Set 1 V2.mat&quot;)" methodname="RepeatedEnvironmentMaterial_HasGpuInstancingEnabled" classname="PerformanceConfigurationTests" runstate="Runnable" seed="449831618" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000480" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1039" name="RepeatedEnvironmentMaterial_HasGpuInstancingEnabled(&quot;Assets/ModelsFiles/Materials/Chair set.mat&quot;)" fullname="PerformanceConfigurationTests.RepeatedEnvironmentMaterial_HasGpuInstancingEnabled(&quot;Assets/ModelsFiles/Materials/Chair set.mat&quot;)" methodname="RepeatedEnvironmentMaterial_HasGpuInstancingEnabled" classname="PerformanceConfigurationTests" runstate="Runnable" seed="1797974946" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000485" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1040" name="RepeatedEnvironmentMaterial_HasGpuInstancingEnabled(&quot;Assets/ModelsFiles/Materials/Cosmic_Retro_Bedroom_Props.mat&quot;)" fullname="PerformanceConfigurationTests.RepeatedEnvironmentMaterial_HasGpuInstancingEnabled(&quot;Assets/ModelsFiles/Materials/Cosmic_Retro_Bedroom_Props.mat&quot;)" methodname="RepeatedEnvironmentMaterial_HasGpuInstancingEnabled" classname="PerformanceConfigurationTests" runstate="Runnable" seed="112745547" result="Passed" start-time="2026-11-20 04:20:06Z" end-time="2026-11-20 04:20:06Z" duration="0.000371" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+            <output><![CDATA[Saving results to: C:/Users/RICARDO/AppData/LocalLow/DefaultCompany/MinigameTry1\TestResults.xml
+]]></output>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -64,19 +64,29 @@ public class VerificationUI : MonoBehaviour
     public void UpdateLevel(int currentLevel)
     {
         if (levelText != null)
-            levelText.text = $"Nivel {currentLevel}";
+            levelText.text = $"Nivel {currentLevel} de 4";
     }
 
     public void UpdateTimer(float currentTime)
     {
+        UpdateTimer(Mathf.CeilToInt(currentTime));
+    }
+
+    public void UpdateTimer(int displayedSecond)
+    {
         if (timerText != null)
-            timerText.text = $"Tiempo: {Mathf.CeilToInt(currentTime)}";
+            timerText.text = $"Tiempo: {displayedSecond} s";
     }
 
     public void UpdateIntegrity(float currentIntegrity, float maxIntegrity)
     {
         if (integrityText != null)
-            integrityText.text = $"Integridad: {currentIntegrity}/{maxIntegrity}";
+        {
+            float percentage = maxIntegrity > 0f
+                ? Mathf.Clamp01(currentIntegrity / maxIntegrity) * 100f
+                : 0f;
+            integrityText.text = $"Integridad: {percentage:0} %";
+        }
 
         if (integritySlider != null)
             integritySlider.value = currentIntegrity / maxIntegrity;
@@ -85,6 +95,6 @@ public class VerificationUI : MonoBehaviour
     public void UpdateStrikes(int currentStrikes, int maxStrikes)
     {
         if (strikesText != null)
-            strikesText.text = $"Strikes: {currentStrikes}/{maxStrikes}";
+            strikesText.text = $"Intentos: {currentStrikes} / {maxStrikes}";
     }
 }

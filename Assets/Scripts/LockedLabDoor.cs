@@ -17,6 +17,9 @@ public class LockedLabDoor : MonoBehaviour, IInteractable
     {
         if (slidingDoor == null)
             slidingDoor = GetComponent<SlidingDoorGroup>();
+
+        if (slidingDoor != null)
+            slidingDoor.SetLocked(!unlocked);
     }
 
     public string GetInteractionPrompt()
@@ -39,5 +42,16 @@ public class LockedLabDoor : MonoBehaviour, IInteractable
     public void SetUnlocked(bool value)
     {
         unlocked = value;
+
+        if (slidingDoor != null)
+            slidingDoor.SetLocked(!value);
+    }
+
+    public void UnlockAndOpen()
+    {
+        SetUnlocked(true);
+
+        if (slidingDoor != null)
+            slidingDoor.Open();
     }
 }
