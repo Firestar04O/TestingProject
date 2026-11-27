@@ -12,17 +12,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canScan = true;
     [SerializeField] private bool invertControls = false;
 
-    [Header("References")]
-    [SerializeField] private Camera playerCamera;
     private CharacterController controller;
     private Vector2 moveInput;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
-
-        if (playerCamera == null)
-            playerCamera = Camera.main;
     }
     private void Update()
     {
@@ -44,16 +39,7 @@ public class PlayerController : MonoBehaviour
         if (!canMove)
             return;
 
-        Vector3 forward = playerCamera.transform.forward;
-        Vector3 right = playerCamera.transform.right;
-
-        forward.y = 0f;
-        right.y = 0f;
-
-        forward.Normalize();
-        right.Normalize();
-
-        Vector3 direction = forward * moveInput.y + right * moveInput.x;
+        Vector3 direction = transform.forward * moveInput.y + transform.right * moveInput.x;
 
         if (direction.sqrMagnitude > 1f)
             direction.Normalize();

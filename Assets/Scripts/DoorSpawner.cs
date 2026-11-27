@@ -7,8 +7,25 @@ public class DoorSpawner : MonoBehaviour
     [SerializeField] private DoorOption doorPrefab;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private VerificationManager verificationManager;
-    private readonly List<GameObject> spawnedDoors = new List<GameObject>();
+
+    // --- Tarea de optimización (Tabla 10 - Lab14): Object Pooling ---
+    // Antes: cada nivel y cada reintento hacían Instantiate() y Destroy() de las puertas.
+    // Eso generaba picos de memoria/GC Allocated y, con muchos reintentos, contribuía
+    // al comportamiento descrito en BUG-004 (exceso de puertas). Ahora las puertas se
+    // reutilizan desde un pool en lugar de destruirse.
+    private readonly Queue<DoorOption> doorPool = new Queue<DoorOption>();
+    private readonly List<DoorOption> activeDoors = new List<DoorOption>();
+
     private readonly Dictionary<DoorType, Sprite> lastSpriteByType = new Dictionary<DoorType, Sprite>();
+
+    // --- Tarea de optimización (Tabla 10 - Lab14): reducir GC Allocated ---
+    // Antes: GetUniqueSprite y BuildSpawnSelection creaban List<> y HashSet<> nuevos
+    // en cada llamada (varias veces por nivel). Ahora se reutilizan buffers de instancia.
+    private readonly HashSet<Sprite> spritesUsedThisLevel = new HashSet<Sprite>();
+    private readonly List<Sprite> preferredCandidatesBuffer = new List<Sprite>();
+    private readonly List<Sprite> availableCandidatesBuffer = new List<Sprite>();
+    private readonly List<DoorType> spawnSelectionBuffer = new List<DoorType>();
+    private readonly List<int> correctIndicesBuffer = new List<int>();
 
     public void SpawnLevel(LevelConfig levelConfig)
     {
@@ -39,26 +56,20 @@ public class DoorSpawner : MonoBehaviour
 
         int correctIndex = GetCorrectDoorIndex(shuffledTypes, levelConfig.correctDoorType);
 
-        HashSet<Sprite> spritesUsedThisLevel = new HashSet<Sprite>();
+        spritesUsedThisLevel.Clear();
 
         for (int i = 0; i < spawnCount; i++)
         {
-            DoorOption door = Instantiate(
-                doorPrefab,
-                spawnPoints[i].position,
-                spawnPoints[i].rotation
-            );
+            DoorOption door = GetDoorFromPool();
+            door.transform.SetPositionAndRotation(spawnPoints[i].position, spawnPoints[i].rotation);
+            door.gameObject.SetActive(true);
 
             bool isCorrect = i == correctIndex;
             Sprite evidenceSprite = null;
 
             if (levelConfig.theme != null)
             {
-                evidenceSprite = GetUniqueSprite(
-                    levelConfig.theme,
-                    shuffledTypes[i],
-                    spritesUsedThisLevel
-                );
+                evidenceSprite = GetUniqueSprite(levelConfig.theme, shuffledTypes[i]);
 
                 if (evidenceSprite != null)
                     spritesUsedThisLevel.Add(evidenceSprite);
@@ -72,15 +83,24 @@ public class DoorSpawner : MonoBehaviour
 
             door.SetVerificationManager(verificationManager);
 
-            spawnedDoors.Add(door.gameObject);
+            activeDoors.Add(door);
         }
     }
 
-    private Sprite GetUniqueSprite(
-        DoorTheme theme,
-        DoorType doorType,
-        HashSet<Sprite> spritesUsedThisLevel
-    )
+    private DoorOption GetDoorFromPool()
+    {
+        while (doorPool.Count > 0)
+        {
+            DoorOption pooled = doorPool.Dequeue();
+
+            if (pooled != null)
+                return pooled;
+        }
+
+        return Instantiate(doorPrefab);
+    }
+
+    private Sprite GetUniqueSprite(DoorTheme theme, DoorType doorType)
     {
         Sprite[] pool = theme.GetSpritesByType(doorType);
 
@@ -89,23 +109,23 @@ public class DoorSpawner : MonoBehaviour
 
         lastSpriteByType.TryGetValue(doorType, out Sprite previousSprite);
 
-        List<Sprite> preferredCandidates = new List<Sprite>();
-        List<Sprite> availableCandidates = new List<Sprite>();
+        preferredCandidatesBuffer.Clear();
+        availableCandidatesBuffer.Clear();
 
         foreach (Sprite sprite in pool)
         {
             if (sprite == null || spritesUsedThisLevel.Contains(sprite))
                 continue;
 
-            availableCandidates.Add(sprite);
+            availableCandidatesBuffer.Add(sprite);
 
             if (sprite != previousSprite)
-                preferredCandidates.Add(sprite);
+                preferredCandidatesBuffer.Add(sprite);
         }
 
-        List<Sprite> candidates = preferredCandidates.Count > 0
-            ? preferredCandidates
-            : availableCandidates;
+        List<Sprite> candidates = preferredCandidatesBuffer.Count > 0
+            ? preferredCandidatesBuffer
+            : availableCandidatesBuffer;
 
         if (candidates.Count == 0)
         {
@@ -120,6 +140,7 @@ public class DoorSpawner : MonoBehaviour
         lastSpriteByType[doorType] = selectedSprite;
         return selectedSprite;
     }
+
     /// <summary>
     /// Elige exactamente "count" tipos de puerta a partir de todos los tipos configurados en el nivel,
     /// garantizando que al menos una puerta del tipo correcto quede incluida en el subconjunto.
@@ -127,26 +148,27 @@ public class DoorSpawner : MonoBehaviour
     /// </summary>
     private List<DoorType> BuildSpawnSelection(DoorType[] allTypes, DoorType correctType, int count)
     {
-        List<DoorType> pool = new List<DoorType>(allTypes);
+        spawnSelectionBuffer.Clear();
+        spawnSelectionBuffer.AddRange(allTypes);
 
-        if (count >= pool.Count)
-            return pool;
+        if (count >= spawnSelectionBuffer.Count)
+            return spawnSelectionBuffer;
 
-        List<int> correctIndices = new List<int>();
+        correctIndicesBuffer.Clear();
 
-        for (int i = 0; i < pool.Count; i++)
+        for (int i = 0; i < spawnSelectionBuffer.Count; i++)
         {
-            if (pool[i] == correctType)
-                correctIndices.Add(i);
+            if (spawnSelectionBuffer[i] == correctType)
+                correctIndicesBuffer.Add(i);
         }
 
         List<DoorType> selected = new List<DoorType>();
 
-        if (correctIndices.Count > 0)
+        if (correctIndicesBuffer.Count > 0)
         {
-            int guaranteedIndex = correctIndices[Random.Range(0, correctIndices.Count)];
-            selected.Add(pool[guaranteedIndex]);
-            pool.RemoveAt(guaranteedIndex);
+            int guaranteedIndex = correctIndicesBuffer[Random.Range(0, correctIndicesBuffer.Count)];
+            selected.Add(spawnSelectionBuffer[guaranteedIndex]);
+            spawnSelectionBuffer.RemoveAt(guaranteedIndex);
         }
         else
         {
@@ -156,11 +178,11 @@ public class DoorSpawner : MonoBehaviour
             );
         }
 
-        while (selected.Count < count && pool.Count > 0)
+        while (selected.Count < count && spawnSelectionBuffer.Count > 0)
         {
-            int randomIndex = Random.Range(0, pool.Count);
-            selected.Add(pool[randomIndex]);
-            pool.RemoveAt(randomIndex);
+            int randomIndex = Random.Range(0, spawnSelectionBuffer.Count);
+            selected.Add(spawnSelectionBuffer[randomIndex]);
+            spawnSelectionBuffer.RemoveAt(randomIndex);
         }
 
         return selected;
@@ -202,16 +224,21 @@ public class DoorSpawner : MonoBehaviour
         int randomIndex = Random.Range(0, possibleCorrectDoors.Count);
         return possibleCorrectDoors[randomIndex];
     }
+
     public void ClearDoors()
     {
-        foreach (GameObject door in spawnedDoors)
+        foreach (DoorOption door in activeDoors)
         {
-            if (door != null)
-                Destroy(door);
+            if (door == null)
+                continue;
+
+            door.gameObject.SetActive(false);
+            doorPool.Enqueue(door);
         }
 
-        spawnedDoors.Clear();
+        activeDoors.Clear();
     }
+
     private void Shuffle(List<DoorType> list)
     {
         for (int i = 0; i < list.Count; i++)

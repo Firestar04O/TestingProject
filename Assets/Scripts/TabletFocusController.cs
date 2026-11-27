@@ -11,6 +11,7 @@ public class TabletFocusController : MonoBehaviour
 
     [Header("Transition")]
     [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private GameObject crosshair;
 
     private Vector3 defaultLocalPosition;
     private Quaternion defaultLocalRotation;
@@ -62,6 +63,8 @@ public class TabletFocusController : MonoBehaviour
     private void ToggleFocus()
     {
         isFocused = !isFocused;
+        if (crosshair != null)
+            crosshair.SetActive(!isFocused);
 
         if (isFocused)
         {
@@ -82,6 +85,8 @@ public class TabletFocusController : MonoBehaviour
     private void ResetFocus()
     {
         isFocused = false;
+        if (crosshair != null)
+            crosshair.SetActive(true);
 
         targetLocalPosition = defaultLocalPosition;
         targetLocalRotation = defaultLocalRotation;

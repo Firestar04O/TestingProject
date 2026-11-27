@@ -27,6 +27,10 @@ public class SlidingDoorGroup : MonoBehaviour, IInteractable
     [Header("Collider")]
     [SerializeField] private Collider[] collidersToDisableWhileOpen;
 
+    [Header("Synchronized Doors")]
+    [Tooltip("Other door groups that must open/close together with this one (e.g. a paired double-leaf gate on the opposite wall).")]
+    [SerializeField] private SlidingDoorGroup[] linkedGroups;
+
     private bool isOpen;
     private bool isMoving;
     private Coroutine moveRoutine;
@@ -70,17 +74,60 @@ public class SlidingDoorGroup : MonoBehaviour, IInteractable
     }
     public void Open()
     {
+        Open(true);
+    }
+    public void Close()
+    {
+        Close(true);
+    }
+    private void Open(bool propagateToLinked)
+    {
+        if (isLocked)
+            return;
+
         if (moveRoutine != null)
             StopCoroutine(moveRoutine);
 
         moveRoutine = StartCoroutine(MoveDoor(true));
+
+        if (propagateToLinked)
+            SyncLinkedGroups(true);
     }
-    public void Close()
+    private void Close(bool propagateToLinked)
     {
         if (moveRoutine != null)
             StopCoroutine(moveRoutine);
 
         moveRoutine = StartCoroutine(MoveDoor(false));
+
+        if (propagateToLinked)
+            SyncLinkedGroups(false);
+    }
+    // Tells every door group wired into linkedGroups to open/close alongside this one.
+    // The "propagateToLinked: false" call on the linked group prevents it from calling
+    // back into this group (and anything further down the chain), so two gates that
+    // link to each other can't loop forever.
+    private void SyncLinkedGroups(bool open)
+    {
+        Debug.Log($"[SlidingDoorGroup] {gameObject.name} SyncLinkedGroups(open={open}), linkedGroups count={(linkedGroups == null ? 0 : linkedGroups.Length)}");
+
+        if (linkedGroups == null)
+            return;
+
+        foreach (SlidingDoorGroup linked in linkedGroups)
+        {
+            if (linked == null || linked == this)
+            {
+                continue;
+            }
+
+            Debug.Log($"[SlidingDoorGroup] {gameObject.name} -> propagating to {linked.gameObject.name}");
+
+            if (open)
+                linked.Open(false);
+            else
+                linked.Close(false);
+        }
     }
     private IEnumerator MoveDoor(bool open)
     {
@@ -139,16 +186,26 @@ public class SlidingDoorGroup : MonoBehaviour, IInteractable
     public void SetLocked(bool value)
     {
         isLocked = value;
+
+        if (linkedGroups == null)
+            return;
+
+        // Linked gates share a lock. Apply it once per link without calling back.
+        foreach (SlidingDoorGroup linked in linkedGroups)
+        {
+            if (linked != null)
+                linked.isLocked = value;
+        }
     }
 
     public void Lock()
     {
-        isLocked = true;
+        SetLocked(true);
     }
 
     public void Unlock()
     {
-        isLocked = false;
+        SetLocked(false);
     }
 
     public bool IsLocked()

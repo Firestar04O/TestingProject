@@ -19,7 +19,15 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] private bool canLook = true;
 
     private Vector2 lookInput;
-    private float pitch = 0f;
+    private float pitch;
+
+    private void Awake()
+    {
+        transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
+        pitch = Mathf.Clamp(
+            Mathf.DeltaAngle(0f, cameraTarget.localEulerAngles.x), minPitch, maxPitch
+        );
+    }
 
     #region INPUT
     public void OnLook(InputAction.CallbackContext context)
@@ -37,7 +45,7 @@ public class PlayerLook : MonoBehaviour
     private void Look()
     {
         float mouseX = lookInput.x * sensitivityX;
-        transform.Rotate(Vector3.up * mouseX);
+        transform.Rotate(Vector3.up, mouseX, Space.World);
         float mouseY = lookInput.y * sensitivityY;
         if (!invertY)
             mouseY *= -1f;

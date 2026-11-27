@@ -40,7 +40,7 @@ public class TabletUI : MonoBehaviour
     public void ShowResult(bool safe)
     {
         if (statusText != null)
-            statusText.text = safe ? "Resultado: SEGURO" : "Resultado: INSEGURO";
+            statusText.text = safe ? "Puerta segura" : "Puerta insegura";
     }
 
     public void ClearTablet()
